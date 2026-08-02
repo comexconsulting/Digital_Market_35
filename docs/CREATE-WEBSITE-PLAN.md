@@ -79,8 +79,8 @@ Statuses: pending · in-progress · awaiting-evidence · done · deferred: <reas
 - [x] **Bloqueante #2 (Fase 10) resuelto:** sección Proyectos rediseñada para no depender de aprobación externa (ver Key Decisions)
 - [x] Repo GitHub creado (`github.com/comexconsulting/Digital_Market_35`), primer push hecho por mí
 - [x] Vercel conectado al repo — sitio en vivo en **https://digital-market-35.vercel.app**, verificado (incluye refresh directo en `/noticias/:slug`, confirma que el rewrite de `vercel.json` funciona en producción)
-- [ ] **Pendiente del usuario:** cargar `ANTHROPIC_API_KEY` en GitHub → Settings → Secrets and variables → Actions (necesario para que corra `weekly-news.yml` — sin esto el cron del lunes va a fallar)
-- [ ] **Pendiente del usuario:** confirmar que `main` no tenga branch protection con revisión obligatoria (o el push automático semanal del bot va a fallar)
+- [x] `ANTHROPIC_API_KEY` cargada en GitHub Secrets
+- [x] Workflow probado a mano (`workflow_dispatch`) — generó el artículo "Sam Altman y el debate sobre frenar el desarrollo de la IA" (fuente real: TechCrunch), commiteó y pusheó solo, y ya apareció en producción sin que nadie tocara nada más. Pipeline end-to-end confirmado funcionando.
 - [x] WhatsApp de fallback confirmado: `+51 985721349`
 - [ ] Sigue pendiente (no bloquea el desarrollo): OK del dueño de Comex Consulting y del dueño de Estilo con Altura antes de mostrar sus proyectos como refuerzo en `#proyectos`
 
