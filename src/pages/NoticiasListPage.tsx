@@ -34,17 +34,26 @@ export function NoticiasListPage() {
         <div className="mt-14 flex flex-col divide-y divide-border-hairline">
           {articles.map((a, i) => (
             <FadeIn key={a.slug} delay={i * 0.08}>
-              <Link to={`/noticias/${a.slug}`} className="group flex flex-col gap-2 py-8">
-                <span className="font-mono text-xs uppercase tracking-wide text-text-tertiary">
-                  {formatDate(a.date)} · {a.sourceName}
-                </span>
-                <h2 className="font-display text-xl font-semibold text-text-primary transition-colors group-hover:text-cyan-500 sm:text-2xl">
-                  {a.title}
-                </h2>
-                <p className="font-body text-base leading-relaxed text-text-secondary">{a.summary}</p>
-                <span className="mt-1 inline-flex items-center gap-1.5 font-body text-sm text-cyan-500">
-                  Leer más <ArrowRight size={14} />
-                </span>
+              <Link to={`/noticias/${a.slug}`} className="group flex flex-col gap-5 py-8 sm:flex-row">
+                <div className="h-40 w-full shrink-0 overflow-hidden rounded-2xl border border-border-hairline sm:h-28 sm:w-40">
+                  <img
+                    src={a.thumb}
+                    alt=""
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <span className="font-mono text-xs uppercase tracking-wide text-text-tertiary">
+                    {formatDate(a.date)} · {a.sourceName}
+                  </span>
+                  <h2 className="font-display text-xl font-semibold text-text-primary transition-colors group-hover:text-cyan-500 sm:text-2xl">
+                    {a.title}
+                  </h2>
+                  <p className="font-body text-base leading-relaxed text-text-secondary">{a.summary}</p>
+                  <span className="mt-1 inline-flex items-center gap-1.5 font-body text-sm text-cyan-500">
+                    Leer más <ArrowRight size={14} />
+                  </span>
+                </div>
               </Link>
             </FadeIn>
           ))}

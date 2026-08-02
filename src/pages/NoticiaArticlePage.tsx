@@ -38,7 +38,11 @@ export function NoticiaArticlePage() {
         </Link>
       </FadeIn>
 
-      <FadeIn delay={0.05} className="mt-6">
+      <FadeIn delay={0.05} className="mt-6 overflow-hidden rounded-3xl border border-border-hairline">
+        <img src={article.thumb} alt="" className="h-56 w-full object-cover sm:h-72" />
+      </FadeIn>
+
+      <FadeIn delay={0.1} className="mt-8">
         <span className="font-mono text-xs uppercase tracking-wide text-cyan-500">
           {formatDate(article.date)} · {article.sourceName}
         </span>
@@ -47,7 +51,7 @@ export function NoticiaArticlePage() {
         </h1>
       </FadeIn>
 
-      <FadeIn delay={0.15} className="prose-news mt-10 max-w-prose">
+      <FadeIn delay={0.2} className="prose-news mt-10 max-w-prose">
         <ReactMarkdown
           components={{
             p: (props) => (
@@ -72,7 +76,7 @@ export function NoticiaArticlePage() {
         </ReactMarkdown>
       </FadeIn>
 
-      <FadeIn delay={0.2} className="mt-10 rounded-2xl border border-cyan-500/20 bg-surface-1 p-6">
+      <FadeIn delay={0.25} className="mt-10 rounded-2xl border border-cyan-500/20 bg-surface-1 p-6">
         <p className="font-body text-sm text-text-secondary">
           Este resumen fue generado a partir de una fuente real y verificable.
         </p>

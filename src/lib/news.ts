@@ -1,4 +1,9 @@
 import fm from 'front-matter'
+import streams from '../assets/news-thumbs/streams.jpg'
+import network from '../assets/news-thumbs/network.jpg'
+import circuit from '../assets/news-thumbs/circuit.jpg'
+import panels from '../assets/news-thumbs/panels.jpg'
+import waveform from '../assets/news-thumbs/waveform.jpg'
 
 export interface NewsArticle {
   slug: string
@@ -8,6 +13,7 @@ export interface NewsArticle {
   sourceUrl: string
   sourceName: string
   body: string
+  thumb: string
 }
 
 interface NewsFrontmatter {
@@ -25,6 +31,25 @@ const files = import.meta.glob('/content/news/*.md', {
   import: 'default',
 }) as Record<string, string>
 
+// Set fijo de thumbnails propios (abstractos, en nuestra paleta). Se asignan de forma
+// determinística por slug — no ilustran la noticia puntual, pero le dan variedad e
+// identidad visual sin depender de imágenes de terceros (riesgo legal) ni de generar
+// una imagen nueva en cada corrida automática (punto de falla extra en el pipeline).
+const THUMBS = [streams, network, circuit, panels, waveform]
+
+function hashSlug(slug: string): number {
+  let hash = 0
+  for (let i = 0; i < slug.length; i++) {
+    hash = (hash << 5) - hash + slug.charCodeAt(i)
+    hash |= 0
+  }
+  return Math.abs(hash)
+}
+
+function thumbForSlug(slug: string): string {
+  return THUMBS[hashSlug(slug) % THUMBS.length]
+}
+
 function parseArticle(raw: string): NewsArticle | null {
   try {
     const { attributes, body } = fm<NewsFrontmatter>(raw)
@@ -37,6 +62,7 @@ function parseArticle(raw: string): NewsArticle | null {
       sourceUrl: attributes.sourceUrl,
       sourceName: attributes.sourceName,
       body,
+      thumb: thumbForSlug(attributes.slug),
     }
   } catch {
     return null
