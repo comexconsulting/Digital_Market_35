@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@import "@fontsource-variable/space-grotesk/wght.css";
+@import "@fontsource-variable/manrope/wght.css";
+@import "@fontsource/space-mono/700.css";
+
+@theme {
+  --font-display: "Space Grotesk Variable", sans-serif;
+  --font-body: "Manrope Variable", sans-serif;
+  --font-mono: "Space Mono", monospace;
+
+  /* Superficie — elevación por luminosidad, no por sombra pesada */
+  --color-surface-base: #0a0b0d;
+  --color-surface-1: #0d0e11;
+  --color-surface-2: #12141a;
+  --color-surface-3: #181b22;
+
+  --color-border-hairline: rgb(232 237 240 / 0.08);
+  --color-border-strong: rgb(232 237 240 / 0.14);
+
+  --color-text-primary: #e8edf0;
+  --color-text-secondary: rgb(232 237 240 / 0.6);
+  --color-text-tertiary: rgb(232 237 240 / 0.4);
+
+  /* Cian — acento "máquina" */
+  --color-cyan-100: #c3f4ef;
+  --color-cyan-500: #2fd8cc;
+  --color-cyan-600: #22b8ad;
+  --color-cyan-700: #1a8f86;
+  --color-cyan-900: #0e4d48;
+
+  /* Ámbar — acento "rescate", exclusivo del CTA */
+  --color-amber-100: #ffdcbb;
+  --color-amber-500: #ff8a3d;
+  --color-amber-600: #f06f1d;
+  --color-amber-700: #c2570f;
+  --color-amber-900: #5c2a08;
+}
+
+html {
+  background: var(--color-surface-base);
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--color-surface-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  overflow-x: clip;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  background: var(--color-surface-base);
+  overflow-x: clip;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--color-cyan-700);
+  color: var(--color-text-primary);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-cyan-500);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.hero-heading {
+  background: linear-gradient(180deg, #ffffff 0%, var(--color-cyan-100) 55%, var(--color-cyan-500) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-decorative="true"] {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
