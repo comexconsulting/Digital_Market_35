@@ -77,9 +77,9 @@ Statuses: pending · in-progress · awaiting-evidence · done · deferred: <reas
 - [x] Link de Calendly recibido: https://calendly.com/importacionesjavier4/30min
 - [x] **Bloqueante #1 (Fase 10) resuelto:** usuario confirmó en incógnito que Calendly muestra los horarios reales configurados
 - [x] **Bloqueante #2 (Fase 10) resuelto:** sección Proyectos rediseñada para no depender de aprobación externa (ver Key Decisions)
-- [ ] **Pendiente del usuario:** crear repo vacío en GitHub y pasarme la URL para el primer push
-- [ ] **Pendiente del usuario:** conectar ese repo a Vercel (Import Project) para el auto-deploy
-- [ ] **Pendiente del usuario:** cargar `ANTHROPIC_API_KEY` en GitHub → Settings → Secrets and variables → Actions (necesario para que corra `weekly-news.yml`)
+- [x] Repo GitHub creado (`github.com/comexconsulting/Digital_Market_35`), primer push hecho por mí
+- [x] Vercel conectado al repo — sitio en vivo en **https://digital-market-35.vercel.app**, verificado (incluye refresh directo en `/noticias/:slug`, confirma que el rewrite de `vercel.json` funciona en producción)
+- [ ] **Pendiente del usuario:** cargar `ANTHROPIC_API_KEY` en GitHub → Settings → Secrets and variables → Actions (necesario para que corra `weekly-news.yml` — sin esto el cron del lunes va a fallar)
 - [ ] **Pendiente del usuario:** confirmar que `main` no tenga branch protection con revisión obligatoria (o el push automático semanal del bot va a fallar)
 - [x] WhatsApp de fallback confirmado: `+51 985721349`
 - [ ] Sigue pendiente (no bloquea el desarrollo): OK del dueño de Comex Consulting y del dueño de Estilo con Altura antes de mostrar sus proyectos como refuerzo en `#proyectos`
