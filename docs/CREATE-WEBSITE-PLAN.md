@@ -63,6 +63,10 @@ Statuses: pending · in-progress · awaiting-evidence · done · deferred: <reas
 | 2026-08-02 | Post-lanzamiento | Botón de WhatsApp flotante agregado (no existía ningún acceso directo antes) con ícono propio estilo neón animado (corriente + chispas) | El usuario no encontraba acceso a WhatsApp; pidió un ícono "atractivo, no frío, con movimiento" en vez del ícono genérico inicial |
 | 2026-08-02 | Post-lanzamiento | Video del hero regenerado con más movimiento/energía (segunda vuelta) | El usuario dijo que la primera versión "da sueño verla" |
 | 2026-08-02 | Post-lanzamiento | Servicios: se agregan números 01/02/03 a las tarjetas (mismo lenguaje visual que Proceso); Hero: se suma link discreto "Ver casos de éxito" hacia `#proyectos`, sin agregar un tercer botón | Inspirado en referencia daniladigital.com.ar que compartió el usuario — se adoptó el formato editorial numerado y el link a casos de éxito, sin copiar su paleta azul/dorada (rompería la identidad futurista cian/ámbar ya definida) |
+| 2026-08-02 | Expansión mayor | El proyecto pasa de "landing de una sola página" a incluir `/noticias` (multi-página, con React Router) — cambio real de alcance vs. la decisión de Intake | El usuario pidió explícitamente ir por "la versión grande" (blog + agente que genera contenido), con plan formal aprobado antes de tocar código (ver docs/CREATE-WEBSITE-PLAN.md como fuente, más detalle no repetido acá) |
+| 2026-08-02 | Noticias | Publicación 100% automática sin revisión humana (el usuario lo eligió sabiendo el trade-off frente a un PR-review) | Guardrail de compensación: la URL de la fuente nunca la genera el modelo — la inyecta el script desde el feed RSS real, así la cita no puede ser inventada aunque nadie revise antes de publicar |
+| 2026-08-02 | Noticias | 2 artículos reales sembrados a mano (Anthropic — incidentes de ciberseguridad; OpenAI — agentes de código en ciencia), investigados con búsqueda web real, no inventados | Para que la sección no arranque vacía antes de la primera corrida automática del lunes |
+| 2026-08-02 | Infra | `git init` + primer commit hecho (rama `main`); repo de GitHub y conexión a Vercel quedan pendientes del lado del usuario | No tengo `gh` CLI ni acceso a su cuenta de GitHub/Vercel — le doy los pasos exactos |
 
 ## Next Actions
 - [x] Usuario: describir o adjuntar captura de la estética "futurista" — resuelto con 4 screenshots (ver Context)
@@ -73,6 +77,10 @@ Statuses: pending · in-progress · awaiting-evidence · done · deferred: <reas
 - [x] Link de Calendly recibido: https://calendly.com/importacionesjavier4/30min
 - [x] **Bloqueante #1 (Fase 10) resuelto:** usuario confirmó en incógnito que Calendly muestra los horarios reales configurados
 - [x] **Bloqueante #2 (Fase 10) resuelto:** sección Proyectos rediseñada para no depender de aprobación externa (ver Key Decisions)
+- [ ] **Pendiente del usuario:** crear repo vacío en GitHub y pasarme la URL para el primer push
+- [ ] **Pendiente del usuario:** conectar ese repo a Vercel (Import Project) para el auto-deploy
+- [ ] **Pendiente del usuario:** cargar `ANTHROPIC_API_KEY` en GitHub → Settings → Secrets and variables → Actions (necesario para que corra `weekly-news.yml`)
+- [ ] **Pendiente del usuario:** confirmar que `main` no tenga branch protection con revisión obligatoria (o el push automático semanal del bot va a fallar)
 - [x] WhatsApp de fallback confirmado: `+51 985721349`
 - [ ] Sigue pendiente (no bloquea el desarrollo): OK del dueño de Comex Consulting y del dueño de Estilo con Altura antes de mostrar sus proyectos como refuerzo en `#proyectos`
 
