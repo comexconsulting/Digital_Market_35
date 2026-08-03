@@ -28,14 +28,17 @@ const PROYECTOS: { name: string; category: string; url: string; thumb: string }[
 
 function MonitorMockup({ src }: { src: string }) {
   return (
-    <div className="mx-auto w-full max-w-sm">
-      <div className="rounded-xl border-[6px] border-[#1b1e24] bg-[#1b1e24] shadow-[0_0_50px_-14px_rgba(47,216,204,0.3)]">
-        <div className="aspect-[16/10] w-full overflow-hidden rounded-[4px] bg-surface-1">
-          <img src={src} alt="" className="h-full w-full object-cover object-top" />
+    <div className="mx-auto w-full max-w-sm [perspective:1200px]">
+      <div className="transition-transform duration-700 ease-out [transform:rotateX(3deg)_rotateY(-9deg)] group-hover:[transform:rotateX(0deg)_rotateY(0deg)]">
+        <div className="rounded-xl border-[6px] border-[#262b35] bg-[#262b35] shadow-[0_30px_60px_-18px_rgba(0,0,0,0.65),0_0_70px_-8px_rgba(47,216,204,0.4)]">
+          <div className="aspect-[16/10] w-full overflow-hidden rounded-[4px] bg-surface-1">
+            <img src={src} alt="" className="h-full w-full object-cover object-top" />
+          </div>
         </div>
+        <div className="mx-auto h-5 w-3 bg-gradient-to-b from-[#262b35] to-[#0d0e11]" />
+        <div className="mx-auto h-2 w-28 rounded-full bg-[#262b35]" />
       </div>
-      <div className="mx-auto h-5 w-3 bg-gradient-to-b from-[#1b1e24] to-[#0d0e11]" />
-      <div className="mx-auto h-2 w-28 rounded-full bg-[#1b1e24]" />
+      <div className="mx-auto mt-4 h-3 w-44 rounded-full bg-cyan-500/15 blur-lg" />
     </div>
   )
 }
