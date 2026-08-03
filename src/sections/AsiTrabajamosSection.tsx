@@ -26,6 +26,20 @@ const PROYECTOS: { name: string; category: string; url: string; thumb: string }[
   },
 ]
 
+function MonitorMockup({ src }: { src: string }) {
+  return (
+    <div className="mx-auto w-full max-w-sm">
+      <div className="rounded-xl border-[6px] border-[#1b1e24] bg-[#1b1e24] shadow-[0_0_50px_-14px_rgba(47,216,204,0.3)]">
+        <div className="aspect-[16/10] w-full overflow-hidden rounded-[4px] bg-surface-1">
+          <img src={src} alt="" className="h-full w-full object-cover object-top" />
+        </div>
+      </div>
+      <div className="mx-auto h-5 w-3 bg-gradient-to-b from-[#1b1e24] to-[#0d0e11]" />
+      <div className="mx-auto h-2 w-28 rounded-full bg-[#1b1e24]" />
+    </div>
+  )
+}
+
 export function AsiTrabajamosSection() {
   return (
     <section id="proyectos" className="mx-auto max-w-5xl px-5 py-28 sm:px-8 md:px-10">
@@ -55,35 +69,28 @@ export function AsiTrabajamosSection() {
       </FadeIn>
 
       {PROYECTOS.length > 0 && (
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {PROYECTOS.map((p, i) => (
-            <FadeIn key={p.name} delay={i * 0.1}>
-              <a
-                href={p.url}
-                target="_blank"
-                rel="noreferrer"
-                className="group flex flex-col overflow-hidden rounded-[28px] border border-border-hairline bg-surface-1 transition-colors hover:border-cyan-500/30"
-              >
-                <div className="relative aspect-[4/3] w-full overflow-hidden">
-                  <img
-                    src={p.thumb}
-                    alt=""
-                    className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-surface-base via-surface-base/10 to-transparent" />
-                </div>
-                <div className="flex items-center justify-between p-6 pt-4">
-                  <div>
-                    <h3 className="font-display text-lg font-semibold text-text-primary">{p.name}</h3>
+        <div className="mt-16">
+          <FadeIn>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-500">Recién entregados</p>
+          </FadeIn>
+          <div className="mt-8 grid grid-cols-1 gap-16 sm:grid-cols-2">
+            {PROYECTOS.map((p, i) => (
+              <FadeIn key={p.name} delay={i * 0.1}>
+                <a href={p.url} target="_blank" rel="noreferrer" className="group flex flex-col items-center gap-5">
+                  <h3 className="font-display text-lg font-semibold text-text-primary transition-colors group-hover:text-cyan-500">
+                    {p.name}
+                  </h3>
+                  <MonitorMockup src={p.thumb} />
+                  <div className="flex flex-col items-center gap-2">
                     <p className="font-body text-sm text-text-tertiary">{p.category}</p>
+                    <span className="inline-flex items-center gap-1.5 rounded-full border-[1.5px] border-cyan-500/40 px-4 py-2 font-display text-xs font-semibold uppercase tracking-wide text-text-primary transition-colors group-hover:border-cyan-500 group-hover:bg-cyan-900/40">
+                      Ver sitio <ExternalLink size={13} />
+                    </span>
                   </div>
-                  <span className="inline-flex items-center gap-1.5 rounded-full border-[1.5px] border-cyan-500/40 px-4 py-2 font-display text-xs font-semibold uppercase tracking-wide text-text-primary transition-colors group-hover:border-cyan-500 group-hover:bg-cyan-900/40">
-                    Ver sitio <ExternalLink size={13} />
-                  </span>
-                </div>
-              </a>
-            </FadeIn>
-          ))}
+                </a>
+              </FadeIn>
+            ))}
+          </div>
         </div>
       )}
 
