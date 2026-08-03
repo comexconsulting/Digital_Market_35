@@ -15,7 +15,7 @@ export function NoticiasListPage() {
   const articles = getAllArticles()
 
   return (
-    <section className="mx-auto max-w-4xl px-5 py-28 sm:px-8 md:px-10">
+    <section className="mx-auto max-w-6xl px-5 py-28 sm:px-8 md:px-10">
       <FadeIn>
         <p className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-500">Noticias</p>
         <h1 className="mt-3 font-display text-3xl font-bold text-text-primary sm:text-4xl md:text-5xl">
@@ -31,11 +31,11 @@ export function NoticiasListPage() {
           <p className="font-body text-text-secondary">Todavía no hay artículos publicados. Volvé pronto.</p>
         </FadeIn>
       ) : (
-        <div className="mt-14 flex flex-col divide-y divide-border-hairline">
+        <div className="mt-14 grid gap-x-8 gap-y-14 sm:grid-cols-2">
           {articles.map((a, i) => (
             <FadeIn key={a.slug} delay={i * 0.08}>
-              <Link to={`/noticias/${a.slug}`} className="group flex flex-col gap-5 py-8 sm:flex-row">
-                <div className="h-40 w-full shrink-0 overflow-hidden rounded-2xl border border-border-hairline sm:h-28 sm:w-40">
+              <Link to={`/noticias/${a.slug}`} className="group flex flex-col gap-5">
+                <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-border-hairline">
                   <img
                     src={a.thumb}
                     alt=""
