@@ -90,7 +90,7 @@ export function HeroSection({ onBookDemo }: HeroSectionProps) {
 
           <FadeIn delay={0.15} y={30} className="w-full overflow-hidden">
             <h1 className="hero-heading text-balance font-display font-black uppercase leading-[0.95] tracking-[-0.03em] text-[13vw] sm:text-[10vw] lg:text-[6.2vw]">
-              Ningún cliente se escapa
+              Diseñamos la web que no deja escapar ni un cliente
             </h1>
           </FadeIn>
 
