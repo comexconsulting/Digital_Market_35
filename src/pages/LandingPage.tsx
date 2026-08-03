@@ -1,4 +1,5 @@
 import { HeroSection } from '../sections/HeroSection'
+import { StatsSection } from '../sections/StatsSection'
 import { ProblemaSection } from '../sections/ProblemaSection'
 import { ServiciosSection } from '../sections/ServiciosSection'
 import { NosotrosSection } from '../sections/NosotrosSection'
@@ -16,6 +17,7 @@ export function LandingPage({ onBookDemo, onOpenQuiz }: LandingPageProps) {
   return (
     <>
       <HeroSection onBookDemo={onBookDemo} />
+      <StatsSection />
       <ProblemaSection />
       <ServiciosSection />
       <NosotrosSection />
