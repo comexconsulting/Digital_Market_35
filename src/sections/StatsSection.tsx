@@ -4,7 +4,7 @@ const STATS = [
   {
     value: '3',
     label: 'Escalones',
-    description: 'Entrada, Core y Premium: sumás CRM, chatbot y automatización sin rehacer nada.',
+    description: 'Web Informativa, +CRM/Chatbot o +Automatizaciones 24/7 — sumás módulos sin rehacer nada.',
   },
   {
     value: '100%',

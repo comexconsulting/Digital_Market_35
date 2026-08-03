@@ -1,31 +1,72 @@
+import { Check } from 'lucide-react'
 import { FadeIn } from '../components/FadeIn'
+
+const WHATSAPP_NUMBER = '51985721349'
 
 const TIERS = [
   {
     n: '01',
-    name: 'Entrada',
+    name: 'Web Informativa',
+    price: '$450.000',
     desc: 'Web profesional, con la base lista para integrar CRM y chatbot después.',
+    features: [
+      'Diseño tradicional y estático',
+      'Diseño responsive',
+      'Optimización de carga',
+      'Formulario de contacto',
+      'Hosting y SSL',
+      'Lista para integrar a futuro CRM y Chatbot',
+      '30 días de garantía y mantenimiento',
+    ],
     highlight: false,
   },
   {
     n: '02',
-    name: 'Core',
-    desc: 'Web + CRM + Chatbot conectados entre sí, atendiendo y siguiendo cada lead solos.',
+    name: 'Web + CRM + Chatbot',
+    price: '$850.000',
+    desc: 'Web similar a esta, orientada a conversión.',
+    features: [
+      'Diseño único',
+      'Animaciones',
+      'Diseño responsive',
+      'Hasta 4 secciones adicionales',
+      'Optimización de carga',
+      'Formulario de contacto',
+      'Hosting y SSL',
+      '30 días de garantía y mantenimiento',
+    ],
     highlight: true,
   },
   {
     n: '03',
-    name: 'Premium',
+    name: 'Web + CRM + Chatbot + Automatizaciones 24/7',
+    price: '$1.350.000',
     desc: 'Suite completa: web + CRM + chatbot + automatizaciones trabajando 24/7.',
+    features: [
+      'Diseño personalizado',
+      'Diseño responsive',
+      'Ingreso de 10 productos',
+      'Optimización SEO para productos',
+      'Optimización de carga',
+      'Integración con redes sociales',
+      'Formulario de contacto',
+      'Hosting y SSL',
+      '30 días de garantía y mantenimiento',
+    ],
     highlight: false,
   },
 ]
+
+function whatsappUrl(planName: string, price: string) {
+  const message = encodeURIComponent(`Hola! Quiero consultar por el plan ${planName} (${price}).`)
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`
+}
 
 export function ServiciosSection() {
   return (
     <section id="servicios" className="mx-auto max-w-6xl px-5 py-28 sm:px-8 md:px-10">
       <FadeIn>
-        <p className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-500">Servicios</p>
+        <p className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-500">Servicio / Precio</p>
         <h2 className="mt-3 font-display text-3xl font-bold text-text-primary sm:text-4xl md:text-5xl">
           Empezá por donde estés hoy
         </h2>
@@ -52,7 +93,30 @@ export function ServiciosSection() {
               <h3 className="font-display text-xl font-semibold uppercase tracking-wide text-text-primary">
                 {tier.name}
               </h3>
-              <p className="font-body text-base leading-relaxed text-text-secondary">{tier.desc}</p>
+              <p className="font-body text-sm leading-relaxed text-text-secondary">{tier.desc}</p>
+              <p className="font-display text-3xl font-bold text-text-primary sm:text-4xl">{tier.price}</p>
+
+              <ul className="flex flex-1 flex-col gap-2.5">
+                {tier.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-2.5">
+                    <Check size={16} strokeWidth={2.5} className="mt-0.5 shrink-0 text-cyan-500" />
+                    <span className="font-body text-sm leading-snug text-text-secondary">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href={whatsappUrl(tier.name, tier.price)}
+                target="_blank"
+                rel="noreferrer"
+                className={`mt-2 inline-flex items-center justify-center rounded-full px-6 py-3 font-display text-xs font-semibold uppercase tracking-wide transition-colors ${
+                  tier.highlight
+                    ? 'border-[1.5px] border-cyan-500 bg-cyan-900/40 text-text-primary hover:bg-cyan-900/70'
+                    : 'border-[1.5px] border-cyan-500/40 text-text-primary hover:border-cyan-500 hover:bg-cyan-900/40'
+                }`}
+              >
+                Consultar por WhatsApp
+              </a>
             </div>
           </FadeIn>
         ))}
@@ -60,8 +124,8 @@ export function ServiciosSection() {
 
       <FadeIn delay={0.4} className="mt-10 max-w-prose">
         <p className="font-body text-base text-text-secondary">
-          Cada proyecto tiene un precio a medida — por eso arrancamos con una charla gratis, no con un número
-          genérico que no te va a servir. Y no hace falta que aprendas nada técnico: nosotros nos encargamos.
+          Estos son los precios de referencia para el proyecto base. Si tu caso necesita algo más específico, lo
+          vemos en la primera llamada — sin costo ni compromiso.
         </p>
       </FadeIn>
     </section>
