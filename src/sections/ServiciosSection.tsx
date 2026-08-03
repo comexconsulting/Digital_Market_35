@@ -7,7 +7,7 @@ const TIERS = [
   {
     n: '01',
     name: 'Web Informativa',
-    price: '$450.000',
+    price: 'US$ 300',
     desc: 'Web profesional, con la base lista para integrar CRM y chatbot después.',
     features: [
       'Diseño tradicional y estático',
@@ -23,7 +23,7 @@ const TIERS = [
   {
     n: '02',
     name: 'Web + CRM + Chatbot',
-    price: '$850.000',
+    price: 'US$ 550',
     desc: 'Web similar a esta, orientada a conversión.',
     features: [
       'Diseño único',
@@ -40,7 +40,7 @@ const TIERS = [
   {
     n: '03',
     name: 'Web + CRM + Chatbot + Automatizaciones 24/7',
-    price: '$1.350.000',
+    price: 'US$ 1.100',
     desc: 'Suite completa: web + CRM + chatbot + automatizaciones trabajando 24/7.',
     features: [
       'Diseño personalizado',
