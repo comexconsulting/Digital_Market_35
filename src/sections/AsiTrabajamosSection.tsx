@@ -15,7 +15,7 @@ const PROYECTOS: { name: string; category: string; url: string; thumb: string }[
   {
     name: 'Comex Consulting',
     category: 'Asesoría en comercio exterior',
-    url: 'https://agente-web-seguridad.vercel.app/',
+    url: 'https://comexconsulting.vercel.app/',
     thumb: comexThumb,
   },
   {
