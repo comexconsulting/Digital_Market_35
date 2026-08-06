@@ -23,7 +23,7 @@ const TIERS = [
   {
     n: '02',
     name: 'Web + CRM + Chatbot',
-    price: 'US$ 550',
+    price: 'US$ 850',
     desc: 'Web similar a esta, orientada a conversión.',
     features: [
       'Diseño único',
@@ -40,7 +40,7 @@ const TIERS = [
   {
     n: '03',
     name: 'Web + CRM + Chatbot + Automatizaciones 24/7',
-    price: 'US$ 1.100',
+    price: 'US$ 1.500',
     desc: 'Suite completa: web + CRM + chatbot + automatizaciones trabajando 24/7.',
     features: [
       'Diseño personalizado',
