@@ -58,7 +58,9 @@ const TIERS = [
 ]
 
 function whatsappUrl(planName: string, price: string) {
-  const message = encodeURIComponent(`Hola! Quiero consultar por el plan ${planName} (${price}).`)
+  const message = encodeURIComponent(
+    `Hola! Quiero reservar mi lugar para el plan ${planName} (${price}). Entiendo que se paga 50% para empezar y 50% al finalizar.`,
+  )
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`
 }
 
@@ -115,7 +117,7 @@ export function ServiciosSection() {
                     : 'border-[1.5px] border-cyan-500/40 text-text-primary hover:border-cyan-500 hover:bg-cyan-900/40'
                 }`}
               >
-                Consultar por WhatsApp
+                Reservar mi lugar
               </a>
             </div>
           </FadeIn>
@@ -125,7 +127,8 @@ export function ServiciosSection() {
       <FadeIn delay={0.4} className="mt-10 max-w-prose">
         <p className="font-body text-base text-text-secondary">
           Estos son los precios de referencia para el proyecto base. Si tu caso necesita algo más específico, lo
-          vemos en la primera llamada — sin costo ni compromiso.
+          vemos en la primera llamada — sin costo ni compromiso. El proyecto se paga en dos partes: 50% para
+          reservar tu lugar y arrancar, 50% al finalizar y entregar.
         </p>
       </FadeIn>
     </section>
