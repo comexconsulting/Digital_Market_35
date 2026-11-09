@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 // El banner de cookies queda igual (lo maneja Calendly por requisito legal), pero el
 // calendario en sí deja de ser celeste/blanco default una vez que lo cierran.
 const CALENDLY_URL =
-  'https://calendly.com/importacionesjavier4/30min?background_color=0a0b0d&text_color=e8edf0&primary_color=2fd8cc'
+  'https://calendly.com/xavier-digitalmarket35/30min?background_color=0a0b0d&text_color=e8edf0&primary_color=2fd8cc'
 const WHATSAPP_NUMBER = '51985721349'
 const WHATSAPP_FALLBACK_MSG = encodeURIComponent(
   'Hola! Quiero agendar una demo de 20 minutos pero no pude cargar el calendario en la web.',
