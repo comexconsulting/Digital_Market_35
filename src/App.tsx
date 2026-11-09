@@ -37,10 +37,10 @@ function App() {
             Digital_Market_35 — agencia de IA para pymes
           </p>
           <a
-            href="mailto:importacionesjavier4@gmail.com"
+            href="mailto:xavier@digitalmarket35.com"
             className="mt-2 inline-block font-body text-sm text-text-secondary transition-colors hover:text-cyan-500"
           >
-            importacionesjavier4@gmail.com
+            xavier@digitalmarket35.com
           </a>
         </footer>
 
