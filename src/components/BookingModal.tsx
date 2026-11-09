@@ -11,7 +11,12 @@ const WHATSAPP_NUMBER = '51985721349'
 const WHATSAPP_FALLBACK_MSG = encodeURIComponent(
   'Hola! Quiero agendar una demo de 20 minutos pero no pude cargar el calendario en la web.',
 )
-const LOAD_TIMEOUT_MS = 6000
+const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_FALLBACK_MSG}`
+// El `load` del iframe espera a los scripts de terceros de Calendly y puede llegar mucho
+// después de que el calendario ya se ve: por eso escuchamos sus postMessage (requieren
+// embed_domain y embed_type). A los 6 s solo ofrecemos WhatsApp como alternativa.
+const SLOW_HINT_MS = 6000
+const LOAD_TIMEOUT_MS = 40000
 
 interface BookingModalProps {
   open: boolean
@@ -19,27 +24,35 @@ interface BookingModalProps {
 }
 
 export function BookingModal({ open, onClose }: BookingModalProps) {
-  const [status, setStatus] = useState<'loading' | 'loaded' | 'error'>('loading')
+  const [status, setStatus] = useState<'loading' | 'slow' | 'loaded' | 'error'>('loading')
   const dialogRef = useRef<HTMLDivElement>(null)
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     if (!open) return
 
     setStatus('loading')
-    timeoutRef.current = setTimeout(() => setStatus((s) => (s === 'loaded' ? s : 'error')), LOAD_TIMEOUT_MS)
+    const slowTimer = setTimeout(() => setStatus((s) => (s === 'loaded' ? s : 'slow')), SLOW_HINT_MS)
+    const errorTimer = setTimeout(() => setStatus((s) => (s === 'loaded' ? s : 'error')), LOAD_TIMEOUT_MS)
 
+    const onMessage = (e: MessageEvent) => {
+      if (e.origin === 'https://calendly.com' && String(e.data?.event).startsWith('calendly.')) {
+        setStatus('loaded')
+      }
+    }
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
     }
+    window.addEventListener('message', onMessage)
     document.addEventListener('keydown', onKeyDown)
     dialogRef.current?.focus()
     document.body.style.overflow = 'hidden'
 
     return () => {
+      window.removeEventListener('message', onMessage)
       document.removeEventListener('keydown', onKeyDown)
       document.body.style.overflow = ''
-      if (timeoutRef.current) clearTimeout(timeoutRef.current)
+      clearTimeout(slowTimer)
+      clearTimeout(errorTimer)
     }
   }, [open, onClose])
 
@@ -77,13 +90,27 @@ export function BookingModal({ open, onClose }: BookingModalProps) {
 
             {status !== 'loaded' && (
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-8 text-center">
-                {status === 'loading' && (
+                {(status === 'loading' || status === 'slow') && (
                   <>
                     <span
                       className="h-8 w-8 animate-spin rounded-full border-2 border-cyan-500 border-t-transparent"
                       aria-hidden="true"
                     />
                     <p className="font-body text-sm text-text-secondary">Abriendo calendario…</p>
+                    {status === 'slow' && (
+                      <p className="max-w-xs font-body text-sm text-text-tertiary">
+                        Puede tardar unos segundos más. Si preferís,{' '}
+                        <a
+                          href={WHATSAPP_HREF}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-cyan-500 underline underline-offset-2"
+                        >
+                          escribinos por WhatsApp
+                        </a>
+                        .
+                      </p>
+                    )}
                   </>
                 )}
                 {status === 'error' && (
@@ -95,7 +122,7 @@ export function BookingModal({ open, onClose }: BookingModalProps) {
                       Escribinos por WhatsApp y coordinamos directo.
                     </p>
                     <a
-                      href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_FALLBACK_MSG}`}
+                      href={WHATSAPP_HREF}
                       target="_blank"
                       rel="noreferrer"
                       className="mt-2 inline-flex items-center gap-2 rounded-full bg-amber-500 px-6 py-3 font-display text-xs font-semibold uppercase tracking-wide text-surface-base"
@@ -109,14 +136,11 @@ export function BookingModal({ open, onClose }: BookingModalProps) {
 
             <iframe
               title="Agendar demo con Digital_Market_35"
-              src={CALENDLY_URL}
+              src={`${CALENDLY_URL}&embed_domain=${window.location.hostname}&embed_type=Inline`}
               className={`h-full w-full flex-1 border-0 transition-opacity duration-300 ${
                 status === 'loaded' ? 'opacity-100' : 'opacity-0'
               }`}
-              onLoad={() => {
-                if (timeoutRef.current) clearTimeout(timeoutRef.current)
-                setStatus('loaded')
-              }}
+              onLoad={() => setStatus('loaded')}
             />
           </motion.div>
         </motion.div>
