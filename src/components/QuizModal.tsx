@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { QUIZ_QUESTIONS, getTierForScore } from '../data/quiz'
 import { Button } from './Button'
 
-const WHATSAPP_NUMBER = '51985721349'
+const WHATSAPP_NUMBER = Intl.DateTimeFormat().resolvedOptions().timeZone === 'America/Lima' ? '51985721349' : '5493516511617'
 
 type Step = 'intro' | 'contact' | number | 'result'
 
