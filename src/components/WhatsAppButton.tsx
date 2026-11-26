@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 
-const WHATSAPP_NUMBER = '51985721349'
+const WHATSAPP_NUMBER = Intl.DateTimeFormat().resolvedOptions().timeZone === 'America/Lima' ? '51985721349' : '5493516511617'
 const MESSAGE = encodeURIComponent('Hola! Quiero saber más sobre Digital_Market_35.')
 const GLOW = '#3EF08C'
 const SPARK = '#E9FFF3'
