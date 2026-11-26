@@ -1,7 +1,7 @@
 import { Check } from 'lucide-react'
 import { FadeIn } from '../components/FadeIn'
 
-const WHATSAPP_NUMBER = '51985721349'
+const WHATSAPP_NUMBER = Intl.DateTimeFormat().resolvedOptions().timeZone === 'America/Lima' ? '51985721349' : '5493516511617'
 
 const TIERS = [
   {
